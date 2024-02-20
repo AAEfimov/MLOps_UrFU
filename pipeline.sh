@@ -97,10 +97,10 @@ fi
 # Выбор стадии или запуск всего
 
 case "$stage" in
-	"data_creation" | '0') stage_data_creation $@ ;;
-	"model_preprocession" | '1') stage_model_preprocessing $@ ;;
-	"model_preparation" | '2') stage_model_preparation $@ ;;
-	"model_testing" | '3') stage_model_testing $@ ;;
+	"data_creation" | '1') stage_data_creation $@ ;;
+	"model_preprocession" | '2') stage_model_preprocessing $@ ;;
+	"model_preparation" | '3') stage_model_preparation $@ ;;
+	"model_testing" | '4') stage_model_testing $@ ;;
 	*) stage_full $@ ;; 
 esac
 
