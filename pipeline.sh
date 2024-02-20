@@ -31,21 +31,21 @@ dump_result() {
 
 }
 
-stage_data_creation() {
-	printf "${BLUE}${bold} Stage 1. Data creation ${normal}${NC}\n"
-
-	python3 data_creation.py
-
-	dump_result $?
-}
-
 stage_model_preprocessing() {
-        printf "${BLUE}${bold} Stage 2. Model preprocessing ${normal}${NC}\n"
+        printf "${BLUE}${bold} Stage 1. Model preprocessing ${normal}${NC}\n"
 
 	python3 model_preprocession.py
 
         dump_result $?
 
+}
+
+stage_data_creation() {
+        printf "${BLUE}${bold} Stage 2. Data creation ${normal}${NC}\n"
+
+        python3 data_creation.py
+
+        dump_result $?
 }
 
 stage_model_preparation() {
@@ -74,8 +74,8 @@ stage_full() {
 
 	printf "${BLUE}${bold} Run full stages ${normal}${NC}\n"
 
+	stage_model_preprocessing $@
 	stage_data_creation $@
-  	stage_model_preprocessing $@
   	stage_model_preparation $@
   	stage_model_testing $@
 
@@ -97,8 +97,8 @@ fi
 # Выбор стадии или запуск всего
 
 case "$stage" in
-	"data_creation" | '1') stage_data_creation $@ ;;
 	"model_preprocession" | '2') stage_model_preprocessing $@ ;;
+        "data_creation" | '1') stage_data_creation $@ ;;
 	"model_preparation" | '3') stage_model_preparation $@ ;;
 	"model_testing" | '4') stage_model_testing $@ ;;
 	*) stage_full $@ ;; 
