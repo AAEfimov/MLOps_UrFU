@@ -1,7 +1,7 @@
 # Configs
 
 # dataset URL
-dataset = 'https://www.kaggle.com/datasets/nelgiriyewithana/new-york-housing-market'
+dataset = "https://www.kaggle.com/datasets/nelgiriyewithana/new-york-housing-market"
 
 # Saved dataset path
 path = "new-york-housing-market/NY-House-Dataset.csv"

@@ -22,6 +22,8 @@ df = pd.read_csv(prepared_path)
 X = df.drop("PRICE", axis=1).values
 y = df["PRICE"].values
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20, random_state=1)
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.20, random_state=1
+)
 
 save_datasets(X_train, X_test, y_train, y_test)

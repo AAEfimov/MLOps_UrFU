@@ -16,5 +16,5 @@ def save_model(path, model):
     """
     Save trainde model to pkl file
     """
-    with open(path, 'wb') as f:
+    with open(path, "wb") as f:
         pickle.dump(model, f)

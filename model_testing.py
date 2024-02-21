@@ -6,10 +6,10 @@ from aux_func import load_datasets
 
 
 # load TEST DATA
-X_test, y_test = load_datasets('test/X_test.npy', "test/y_test.npy")
+X_test, y_test = load_datasets("test/X_test.npy", "test/y_test.npy")
 
 
-with open(model_file, 'rb') as f:
+with open(model_file, "rb") as f:
     reg_model = pickle.load(f)
 
 y_pred = reg_model.predict(X_test)

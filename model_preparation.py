@@ -12,7 +12,7 @@ def get_model_or_pipeline():
     return LinearRegression()
 
 
-X_train, y_train = load_datasets('train/X_train.npy', 'train/y_train.npy')
+X_train, y_train = load_datasets("train/X_train.npy", "train/y_train.npy")
 
 reg_model = get_model_or_pipeline()
 reg_model.fit(X_train, y_train)
