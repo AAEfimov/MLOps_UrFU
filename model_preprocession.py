@@ -57,7 +57,6 @@ df = pd.get_dummies(df, columns=cat_cols, drop_first=drop_first)
 scaler = MinMaxScaler()
 df[num_cols] = pd.DataFrame(scaler.fit_transform(df[num_cols]), columns=df[num_cols].columns)
 
-
 ext_dir = os.path.dirname(os.path.abspath(prepared_path))
 if not os.path.exists(ext_dir):
     os.mkdir(ext_dir)
