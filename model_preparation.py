@@ -1,8 +1,9 @@
 import numpy as np
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error
-from config import model_file
+
 from aux_func import load_datasets, save_model
+from config import model_file
 
 
 def get_model_or_pipeline():

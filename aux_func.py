@@ -1,5 +1,6 @@
-import numpy as np
 import pickle
+
+import numpy as np
 
 
 def load_datasets(X_train_path, y_train_path):

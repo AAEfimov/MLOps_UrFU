@@ -1,9 +1,10 @@
-from sklearn.metrics import mean_squared_error
-import numpy as np
 import pickle
-from config import model_file
-from aux_func import load_datasets
 
+import numpy as np
+from sklearn.metrics import mean_squared_error
+
+from aux_func import load_datasets
+from config import model_file
 
 # load TEST DATA
 X_test, y_test = load_datasets("test/X_test.npy", "test/y_test.npy")

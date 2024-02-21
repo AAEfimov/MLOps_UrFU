@@ -1,8 +1,10 @@
 import os
+
 import opendatasets as od
 import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
-from config import dataset, prepared_path, path
+
+from config import dataset, path, prepared_path
 
 
 def grab_col_names(dataframe, cat_th=10, car_th=20, dump_info=False):
