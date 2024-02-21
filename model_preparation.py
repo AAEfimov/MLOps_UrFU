@@ -1,15 +1,9 @@
-from sklearn.model_selection import KFold
-from sklearn.model_selection import cross_validate
+import numpy as np
 from sklearn.linear_model import LinearRegression
-from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import mean_squared_error, mean_absolute_error
-from sklearn.metrics import accuracy_score, roc_auc_score, confusion_matrix, classification_report, RocCurveDisplay
-import numpy as np 
-import pickle
+from sklearn.metrics import mean_squared_error
+from config import model_file
+from aux_func import load_datasets, save_model
 
-
-from config import *
-from aux_func import *
 
 def get_model_or_pipeline():
     """
@@ -20,12 +14,10 @@ def get_model_or_pipeline():
 
 X_train, y_train = load_datasets('train/X_train.npy', 'train/y_train.npy')
 
-
 reg_model = get_model_or_pipeline()
 reg_model.fit(X_train, y_train)
 y_pred = reg_model.predict(X_train)
 
-print(f"Train error: ", np.sqrt(mean_squared_error(y_train, y_pred)))
+print("Train error: ", np.sqrt(mean_squared_error(y_train, y_pred)))
 
 save_model(model_file, reg_model)
-

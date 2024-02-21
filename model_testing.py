@@ -1,16 +1,14 @@
-from sklearn import datasets
-from sklearn.metrics import mean_squared_error, mean_absolute_error
-import numpy as np # linear algebra
+from sklearn.metrics import mean_squared_error
+import numpy as np
 import pickle
-from config import *
-from aux_func import *
+from config import model_file
+from aux_func import load_datasets
+
 
 # load TEST DATA
-
 X_test, y_test = load_datasets('test/X_test.npy', "test/y_test.npy")
 
 
-# load model
 with open(model_file, 'rb') as f:
     reg_model = pickle.load(f)
 
