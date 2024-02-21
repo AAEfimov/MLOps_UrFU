@@ -39,3 +39,5 @@ chmod a+x pipeline.sh
 ```
 
 ### Результат работы скрипта  
+
+<img src="doc/Final_model.gif" width="40" height="40" />
