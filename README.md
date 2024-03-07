@@ -5,7 +5,16 @@
 [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/AAEfimov/MLOps_UrFU.svg)](http://isitmaintained.com/project/AAEfimov/MLOps_UrFU "Average time to resolve an issue")
 [![Percentage of issues still open](http://isitmaintained.com/badge/open/AAEfimov/MLOps_UrFU.svg)](http://isitmaintained.com/project/AAEfimov/MLOps_UrFU "Percentage of issues still open")
 
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/86348959/134908631-2f6c75a5-eef8-45b6-ad2d-2f94cac7a83a.png" />
+</p>
 
+
+# Table of Contents
+- [Bash pipeline](#bash-pipeline)
+- [Jenkins pipeline](#jenkins-pipeline)
+
+# Bash pipeline 
 ### Лабораторная работа №1 по автоматизации машинного обучения
 
 В данной работе представлен pipeline для решения задачи линей регресси с Kagle.  
@@ -41,3 +50,7 @@ chmod a+x pipeline.sh
 ### Результат работы скрипта  
 
 <img src="doc/Final_model.gif" />
+
+# Jenkins pipeline
+
+### Конфигурация 2-х видов pipeline описана в документе Jenkins_pipeline_howto.ipynb и будет доступна на сайте после 17.03.2024
