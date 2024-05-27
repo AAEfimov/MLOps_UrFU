@@ -38,6 +38,7 @@ pipeline {
 
 	stage('dvc_data_get') {
 	     steps {
+		sh 'rm stages/model.pkl'
 		sh "dvc pull"
 	     }
 	}
