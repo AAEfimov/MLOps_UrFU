@@ -7,21 +7,15 @@ __author__ = "UrFU team"
 __copyright__ = "Copyright 2023, Planet Earth"
 
 import os
-import numpy as np
 import pickle
-
-from sklearn.linear_model import LinearRegression
-from sklearn.ensemble import RandomForestRegressor
-
-from sklearn.metrics import mean_squared_error
-from sklearn.metrics import mean_absolute_error
-from sklearn.metrics import r2_score
 
 from aux_func import load_datasets, save_model
 from config import model_file
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 
 
-def get_model_or_pipeline(use_pretrained = False):
+def get_model_or_pipeline(use_pretrained=False):
     """
     Change this function to switch models
     """
@@ -30,10 +24,13 @@ def get_model_or_pipeline(use_pretrained = False):
             reg_model = pickle.load(f)
             return reg_model
     else:
-        reg_model = RandomForestRegressor(n_estimators=1000, max_depth=7).fit(X_train, y_train)
+        reg_model = RandomForestRegressor(n_estimators=1000, max_depth=7).fit(
+            X_train, y_train
+        )
         return reg_model
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
 
     use_pretrained = False
 
@@ -48,8 +45,8 @@ if __name__ == '__main__':
     y_pred = reg_model.predict(X_train)
 
     print("Train mse: ", mean_squared_error(y_train, y_pred))
-    print("Train mae: ",  mean_absolute_error(y_train, y_pred))
-    print("Train r^2: ",  r2_score(y_train, y_pred))
+    print("Train mae: ", mean_absolute_error(y_train, y_pred))
+    print("Train r^2: ", r2_score(y_train, y_pred))
 
-    if use_pretrained == False:
+    if not use_pretrained:
         save_model(model_file, reg_model)

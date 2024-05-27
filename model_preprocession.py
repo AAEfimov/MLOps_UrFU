@@ -8,11 +8,11 @@ __copyright__ = "Copyright 2023, Planet Earth"
 
 import os
 
-import opendatasets as od
 import pandas as pd
-from sklearn.preprocessing import MinMaxScaler
 
+import opendatasets as od
 from config import dataset, path, prepared_path
+from sklearn.preprocessing import MinMaxScaler
 
 
 def grab_col_names(dataframe, cat_th=10, car_th=20, dump_info=False):
@@ -47,7 +47,8 @@ def grab_col_names(dataframe, cat_th=10, car_th=20, dump_info=False):
 
     return cat_cols, num_cols, cat_but_car
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
 
     #  Download
     if not os.path.exists(path):

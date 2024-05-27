@@ -10,9 +10,9 @@ import os
 
 import numpy as np
 import pandas as pd
-from sklearn.model_selection import train_test_split
 
 from config import prepared_path
+from sklearn.model_selection import train_test_split
 
 
 def save_datasets(X_train, X_test, y_train, y_test):
@@ -27,7 +27,7 @@ def save_datasets(X_train, X_test, y_train, y_test):
     np.save("test/y_test.npy", y_test)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
 
     df = pd.read_csv(prepared_path)
 
