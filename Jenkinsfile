@@ -20,7 +20,8 @@ pipeline {
                 withCredentials([file(credentialsId: 'kaggle_id', variable: 'kaggle_id')]) {
                     sh "cp \$kaggle_id $WORKSPACE"
                 }
-               
+              
+		sh "dvc remote modify myremote --local gdrive_user_credentials_file gdrive.json" 
 		withCredentials([file(credentialsId: 'gdrive', variable: 'gdrive')]) {
 		    sh "cp \$gdrive $WORKSPACE"
                 }
