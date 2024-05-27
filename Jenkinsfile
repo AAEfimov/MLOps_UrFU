@@ -68,7 +68,7 @@ pipeline {
 
 	stage('data_testing') {
 	     steps {
-		sh "python -m unittest test_data"
+		sh "./pipeline.sh test_data"
 	    }
 	}
     }
