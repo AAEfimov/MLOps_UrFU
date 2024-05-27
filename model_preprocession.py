@@ -1,3 +1,11 @@
+"""
+model_preprocession.py
+EDA for data.
+"""
+
+__author__ = "UrFU team"
+__copyright__ = "Copyright 2023, Planet Earth"
+
 import os
 
 import opendatasets as od
@@ -39,43 +47,45 @@ def grab_col_names(dataframe, cat_th=10, car_th=20, dump_info=False):
 
     return cat_cols, num_cols, cat_but_car
 
+if __name__ == '__main__':
 
-#  Download
-od.download(dataset)
+    #  Download
+    if not os.path.exists(path):
+        od.download(dataset)
 
-#  EDA
-df = pd.read_csv(path)
+    #  EDA
+    df = pd.read_csv(path)
 
-choose_list = [
-    "Brokertitle",
-    "Address",
-    "State",
-    "Main_address",
-    "Administrative_area_level_2",
-    "Sublocality",
-    "Street_name",
-    "Long_name",
-    "Formatted_address",
-    "Longitude",
-    "Latitude",
-]
-choose_list = [col.upper() for col in choose_list]
+    choose_list = [
+        "Brokertitle",
+        "Address",
+        "State",
+        "Main_address",
+        "Administrative_area_level_2",
+        "Sublocality",
+        "Street_name",
+        "Long_name",
+        "Formatted_address",
+        "Longitude",
+        "Latitude",
+    ]
+    choose_list = [col.upper() for col in choose_list]
 
-df.drop(choose_list, axis=1, inplace=True)
+    df.drop(choose_list, axis=1, inplace=True)
 
-cat_cols, num_cols, cat_but_car = grab_col_names(df)
-drop_first = False
-df = pd.get_dummies(df, columns=cat_cols, drop_first=drop_first)
+    cat_cols, num_cols, cat_but_car = grab_col_names(df)
+    drop_first = False
+    df = pd.get_dummies(df, columns=cat_cols, drop_first=drop_first)
 
-#  Scale
+    #  Scale
 
-scaler = MinMaxScaler()
-df[num_cols] = pd.DataFrame(
-    scaler.fit_transform(df[num_cols]), columns=df[num_cols].columns
-)
+    scaler = MinMaxScaler()
+    df[num_cols] = pd.DataFrame(
+        scaler.fit_transform(df[num_cols]), columns=df[num_cols].columns
+    )
 
-ext_dir = os.path.dirname(os.path.abspath(prepared_path))
-if not os.path.exists(ext_dir):
-    os.mkdir(ext_dir)
+    ext_dir = os.path.dirname(os.path.abspath(prepared_path))
+    if not os.path.exists(ext_dir):
+        os.mkdir(ext_dir)
 
-df.to_csv(prepared_path)
+    df.to_csv(prepared_path)

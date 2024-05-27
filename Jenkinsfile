@@ -24,7 +24,19 @@ pipeline {
                 sh "ls -la"
             }
         }
-        
+       
+	stage('code_testing') {
+	     steps {
+		sh "echo Test"
+	     }
+	}
+
+	stage('dvc_data_get') {
+	     steps {
+		sh "dvc pull"
+	     }
+	}
+ 
         stage('model_preprocession') {
              steps {
              	 sh "./pipeline.sh model_preprocession"
@@ -48,5 +60,11 @@ pipeline {
                  sh "./pipeline.sh model_testing"
             }
         }
+
+	stage('data_testing') {
+	     steps {
+		sh "python -m unittest test_data"
+	    }
+	}
     }
 }

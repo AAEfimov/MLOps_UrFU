@@ -1,3 +1,11 @@
+"""
+data_creation.py
+Tests for data on pretrained model.
+"""
+
+__author__ = "UrFU team"
+__copyright__ = "Copyright 2023, Planet Earth"
+
 import os
 
 import numpy as np
@@ -19,13 +27,15 @@ def save_datasets(X_train, X_test, y_train, y_test):
     np.save("test/y_test.npy", y_test)
 
 
-df = pd.read_csv(prepared_path)
+if __name__ == '__main__':
 
-X = df.drop("PRICE", axis=1).values
-y = df["PRICE"].values
+    df = pd.read_csv(prepared_path)
 
-X_train, X_test, y_train, y_test = train_test_split(
-    X, y, test_size=0.20, random_state=1
-)
+    X = df.drop("PRICE", axis=1).values
+    y = df["PRICE"].values
 
-save_datasets(X_train, X_test, y_train, y_test)
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.10, random_state=42
+    )
+
+    save_datasets(X_train, X_test, y_train, y_test)
