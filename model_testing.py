@@ -1,19 +1,27 @@
-import pickle
+"""
+model_testing.py
+Simple test for model.
+"""
 
-import numpy as np
-from sklearn.metrics import mean_squared_error
+__author__ = "UrFU team"
+__copyright__ = "Copyright 2023, Planet Earth"
+
+import pickle
 
 from aux_func import load_datasets
 from config import model_file
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 
-# load TEST DATA
-X_test, y_test = load_datasets("test/X_test.npy", "test/y_test.npy")
+if __name__ == "__main__":
 
+    # load TEST DATA
+    X_test, y_test = load_datasets("test/X_test.npy", "test/y_test.npy")
 
-with open(model_file, "rb") as f:
-    reg_model = pickle.load(f)
+    with open(model_file, "rb") as f:
+        reg_model = pickle.load(f)
 
-y_pred = reg_model.predict(X_test)
-np.sqrt(mean_squared_error(y_test, y_pred))
+    y_pred = reg_model.predict(X_test)
 
-print(f"Model error: {reg_model.score(X_test, y_test)}")
+    print("Test mse: ", mean_squared_error(y_test, y_pred))
+    print("Test mae: ", mean_absolute_error(y_test, y_pred))
+    print("Test r^2: ", r2_score(y_test, y_pred))

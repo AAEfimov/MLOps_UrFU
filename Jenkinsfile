@@ -20,11 +20,29 @@ pipeline {
                 withCredentials([file(credentialsId: 'kaggle_id', variable: 'kaggle_id')]) {
                     sh "cp \$kaggle_id $WORKSPACE"
                 }
-                
+              
+		sh "dvc remote modify myremote --local gdrive_user_credentials_file gdrive.json" 
+		withCredentials([file(credentialsId: 'gdrive', variable: 'gdrive')]) {
+		    sh "cp \$gdrive $WORKSPACE"
+                }
+ 
                 sh "ls -la"
             }
         }
-        
+       
+	stage('code_testing') {
+	     steps {
+		sh "echo Test"
+	     }
+	}
+
+	stage('dvc_data_get') {
+	     steps {
+		sh 'rm stages/model.pkl'
+		sh "dvc pull"
+	     }
+	}
+ 
         stage('model_preprocession') {
              steps {
              	 sh "./pipeline.sh model_preprocession"
@@ -48,5 +66,11 @@ pipeline {
                  sh "./pipeline.sh model_testing"
             }
         }
+
+	stage('data_testing') {
+	     steps {
+		sh "./pipeline.sh test_data"
+	    }
+	}
     }
 }

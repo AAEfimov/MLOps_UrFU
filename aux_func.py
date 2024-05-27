@@ -1,3 +1,12 @@
+"""
+aux_func.py
+auxiliary functions
+"""
+
+__author__ = "UrFU team"
+__copyright__ = "Copyright 2023, Planet Earth"
+
+
 import pickle
 
 import numpy as np

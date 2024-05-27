@@ -1,10 +1,18 @@
+"""
+model_preprocession.py
+EDA for data.
+"""
+
+__author__ = "UrFU team"
+__copyright__ = "Copyright 2023, Planet Earth"
+
 import os
 
-import opendatasets as od
 import pandas as pd
-from sklearn.preprocessing import MinMaxScaler
 
+import opendatasets as od
 from config import dataset, path, prepared_path
+from sklearn.preprocessing import MinMaxScaler
 
 
 def grab_col_names(dataframe, cat_th=10, car_th=20, dump_info=False):
@@ -40,42 +48,45 @@ def grab_col_names(dataframe, cat_th=10, car_th=20, dump_info=False):
     return cat_cols, num_cols, cat_but_car
 
 
-#  Download
-od.download(dataset)
+if __name__ == "__main__":
 
-#  EDA
-df = pd.read_csv(path)
+    #  Download
+    if not os.path.exists(path):
+        od.download(dataset)
 
-choose_list = [
-    "Brokertitle",
-    "Address",
-    "State",
-    "Main_address",
-    "Administrative_area_level_2",
-    "Sublocality",
-    "Street_name",
-    "Long_name",
-    "Formatted_address",
-    "Longitude",
-    "Latitude",
-]
-choose_list = [col.upper() for col in choose_list]
+    #  EDA
+    df = pd.read_csv(path)
 
-df.drop(choose_list, axis=1, inplace=True)
+    choose_list = [
+        "Brokertitle",
+        "Address",
+        "State",
+        "Main_address",
+        "Administrative_area_level_2",
+        "Sublocality",
+        "Street_name",
+        "Long_name",
+        "Formatted_address",
+        "Longitude",
+        "Latitude",
+    ]
+    choose_list = [col.upper() for col in choose_list]
 
-cat_cols, num_cols, cat_but_car = grab_col_names(df)
-drop_first = False
-df = pd.get_dummies(df, columns=cat_cols, drop_first=drop_first)
+    df.drop(choose_list, axis=1, inplace=True)
 
-#  Scale
+    cat_cols, num_cols, cat_but_car = grab_col_names(df)
+    drop_first = False
+    df = pd.get_dummies(df, columns=cat_cols, drop_first=drop_first)
 
-scaler = MinMaxScaler()
-df[num_cols] = pd.DataFrame(
-    scaler.fit_transform(df[num_cols]), columns=df[num_cols].columns
-)
+    #  Scale
 
-ext_dir = os.path.dirname(os.path.abspath(prepared_path))
-if not os.path.exists(ext_dir):
-    os.mkdir(ext_dir)
+    scaler = MinMaxScaler()
+    df[num_cols] = pd.DataFrame(
+        scaler.fit_transform(df[num_cols]), columns=df[num_cols].columns
+    )
 
-df.to_csv(prepared_path)
+    ext_dir = os.path.dirname(os.path.abspath(prepared_path))
+    if not os.path.exists(ext_dir):
+        os.mkdir(ext_dir)
+
+    df.to_csv(prepared_path)

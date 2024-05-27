@@ -68,6 +68,13 @@ stage_model_testing() {
 
 }
 
+stage_data_testing() {
+
+	printf "${BLUE}${bold} Data testing ${normal}${NC}\n"
+
+	python3 -m unittest test_data
+}
+
 # Функция запуска всех стадий последовательно
 
 stage_full() {
@@ -78,6 +85,7 @@ stage_full() {
 	stage_data_creation $@
   	stage_model_preparation $@
   	stage_model_testing $@
+	stage_data_testing $@
 
 	dump_result $?
 
@@ -101,6 +109,7 @@ case "$stage" in
         "data_creation" | '2') stage_data_creation $@ ;;
 	"model_preparation" | '3') stage_model_preparation $@ ;;
 	"model_testing" | '4') stage_model_testing $@ ;;
+	"test_data" | '5') stage_data_testing $@;;
 	*) stage_full $@ ;; 
 esac
 

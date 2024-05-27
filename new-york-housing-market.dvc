@@ -1,0 +1,6 @@
+outs:
+- md5: f808f5f40a96d017f7e83c8edc96dea0.dir
+  size: 1334269
+  nfiles: 1
+  hash: md5
+  path: new-york-housing-market
