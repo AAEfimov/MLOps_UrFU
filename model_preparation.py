@@ -40,6 +40,7 @@ if __name__ == "__main__":
         use_pretrained = True
         print("Use pretrained model")
 
+    use_pretrained = False
     reg_model = get_model_or_pipeline(use_pretrained)
 
     y_pred = reg_model.predict(X_train)
