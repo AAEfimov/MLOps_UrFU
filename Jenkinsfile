@@ -20,7 +20,11 @@ pipeline {
                 withCredentials([file(credentialsId: 'kaggle_id', variable: 'kaggle_id')]) {
                     sh "cp \$kaggle_id $WORKSPACE"
                 }
-                
+               
+		withCredentials([file(credentialsId: 'gdrive', variable: 'gdrive')]) {
+		    sh "cp \$gdrive $WORKSPACE"
+                }
+ 
                 sh "ls -la"
             }
         }
